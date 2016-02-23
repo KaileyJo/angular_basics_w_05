@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Angular Magic</title>
+    <link rel="stylesheet" href="/vendors/bootstrap.min.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <script type="text/javascript" src="/vendors/angular.min.js"></script>
+    <script type="text/javascript" src="/scripts/clientapp.js"></script>
+    <!--<script type="text/javascript" src="/scripts/profileInfo.js"></script>-->
+</head>
+
+<body ng-app="myApp">
+    <h1>Customer Orders</h1>
+    <!--<div ng-include="'header.html'"></div>-->
+    <div ng-controller="IndexController">
+    <div class="people" ng-repeat="person in people">
+        <p>{{person.first_name}} {{person.last_name}}
+            <button ng-click="displayOrder(person.id)">Order History</button>
+        </p>
+        <div class="orders">
+            <p class="ng-hide">Order #: {{orders.order_id}} Total: {{orders.total}}</p>
+        </div>
+    </div>
+
+        <!--<button ng-click="addPerson()">Add Person</button>-->
+        <!--<div ng-repeat="person in people">-->
+            <!--<profile-info-directive info="person"></profile-info-directive>-->
+        <!--</div>-->
+    </div>
+</body>
+</html>
