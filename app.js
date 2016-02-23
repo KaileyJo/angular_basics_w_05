@@ -38,12 +38,12 @@ app.get('/orders/:id', function(req, res) {
     console.log(customerID);
     var results = [];
     pg.connect(connectionString, function(err, client, done) {
-        var query = client.query('SELECT customers.first_name, customers.last_name, addresses.street,' +
-            ' addresses.city, addresses.state, addresses.zip addresses.address_type, orders.order_date,' +
-            ' orders.total, line_items.quantity, products.description products.unit_price FROM customers JOIN' +
-            ' addresses ON customers.id = addresses.customer_id JOIN order ON addresses.id = orders.address_id JOIN' +
-            ' line_items ON line_items.order_id = orders.id JOIN products O products.id = line_items.product_id' +
-            ' WHERE customers.id = $1;', [customerID]);
+        //var query = client.query('SELECT * FROM orders');
+        var query = client.query('SELECT addresses.street, addresses.city, addresses.state, addresses.zip,' +
+            ' addresses.address_type, orders.order_date, orders.total, line_items.quantity, products.description,' +
+            ' products.unit_price FROM customers JOIN addresses ON customers.id = addresses.customer_id JOIN orders' +
+            ' ON addresses.id = orders.address_id JOIN line_items ON line_items.order_id = orders.id JOIN products ON' +
+            ' products.id = line_items.product_id WHERE customers.id = $1;', [customerID]);
 
         console.log('I am query', query);
 
